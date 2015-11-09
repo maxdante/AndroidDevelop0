@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+    <item android:id="@+id/action_settings" android:title="page2"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_settings2" android:title="page1"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_settings3" android:title="测试"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_settings4" android:title="设置端口"
+        android:orderInCategory="100" app:showAsAction="never" />
+
+</menu>

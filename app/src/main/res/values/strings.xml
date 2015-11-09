@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">北斗监测系统alpha</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="BaiduAppKey">u3yZDCA5tRxZUYNOtP4nzdOe</string>
+    <string name="title_activity_wave_graphic_">WaveGraphic_Activity</string>
+    <string name="title_activity_welcome">welcome</string>
+</resources>

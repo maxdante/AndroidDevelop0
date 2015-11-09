@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="100dp" android:layout_width="100dp"
+    android:background="#ffffffff" android:orientation="vertical"
+    android:id="@+id/ip_port_layout">
+    <TextView android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/ipname" android:text="  IP:"
+        android:textColor="#020201" />
+    <EditText android:layout_height="wrap_content"
+        android:layout_width="wrap_content" android:id="@+id/ip"
+        android:minWidth="100dp"
+        android:textColor="#060505" />
+    <TextView android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/portname" android:text="Port:"
+        android:textColor="#080907" />
+    <EditText android:layout_height="wrap_content"
+        android:layout_width="wrap_content" android:id="@+id/port" android:minWidth="100dp"
+        android:textColor="#060701" />
+
+</LinearLayout>
