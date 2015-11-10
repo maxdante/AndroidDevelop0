@@ -1,10 +1,13 @@
 package com.example.chy.androiddevelop0;
 
 import android.app.ActivityManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
@@ -87,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
     //基站定位
     LatLng mLastLocaion =null;
-
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mainView_init();
         Ip_PortLayout_init();
+        mContext = this;
     }
 
     @Override
@@ -417,34 +421,51 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //set pressed button background image
-                mButtonAdd.setBackground(getResources().getDrawable(R.drawable.button_bg4,null));
-                v.setBackground(getResources().getDrawable(R.drawable.button_bg3,null));
-                //
-                mBaiduMap.clear();
-                LatLng fake_Location =  new LatLng(26.4767370000,106.6791850000);
-                //LatLng Location0 =  new LatLng(26.4739476560078,106.669090700172);
-                LatLng Location1 =  new LatLng(26.4093180618085,106.256874268727);
-                LatLng Location2 =  new LatLng(26.2532125634427,105.937152536157);
-                LatLng Location3 =  new LatLng(26.0277585343974,106.440282813349);
-                createPointOnMap(fake_Location,mBaiduMap);
-                //createPointOnMap(Location0,mBaiduMap);
-                createPointOnMap(Location1,mBaiduMap);
-                createPointOnMap(Location2,mBaiduMap);
-                createPointOnMap(Location3,mBaiduMap);
-
-
-                //在点之间切换  需要优化
-                if(mLastLocaion == null){
-                    locateOnMap(fake_Location,mBaiduMap);
-                }else if (mLastLocaion.latitude == fake_Location.latitude){
-                    locateOnMap(Location1,mBaiduMap);
-                }else if (mLastLocaion.latitude == Location1.latitude){
-                    locateOnMap(Location2,mBaiduMap);
-                }else if(mLastLocaion.latitude == Location2.latitude){
-                    locateOnMap(Location3,mBaiduMap);
-                }else{
-                    locateOnMap(fake_Location,mBaiduMap);
+                if (NetWorkConnection.isConnect(mContext)==false)
+                {
+                    new AlertDialog.Builder(mContext)
+                            .setTitle("网络错误")
+                            .setMessage("网络连接失败，请确认网络连接")
+                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    // TODO Auto-generated method stub
+                                    //android.os.Process.killProcess(android.os.Process.myPid());
+                                    //System.exit(0);
+                                }
+                            }).show();
                 }
+                else {
+                    mButtonAdd.setBackground(getResources().getDrawable(R.drawable.button_bg4,null));
+                    v.setBackground(getResources().getDrawable(R.drawable.button_bg3,null));
+                    //
+                    mBaiduMap.clear();
+                    LatLng fake_Location =  new LatLng(26.4767370000,106.6791850000);
+                    //LatLng Location0 =  new LatLng(26.4739476560078,106.669090700172);
+                    LatLng Location1 =  new LatLng(26.4093180618085,106.256874268727);
+                    LatLng Location2 =  new LatLng(26.2532125634427,105.937152536157);
+                    LatLng Location3 =  new LatLng(26.0277585343974,106.440282813349);
+                    createPointOnMap(fake_Location,mBaiduMap);
+                    //createPointOnMap(Location0,mBaiduMap);
+                    createPointOnMap(Location1,mBaiduMap);
+                    createPointOnMap(Location2,mBaiduMap);
+                    createPointOnMap(Location3,mBaiduMap);
+
+
+                    //在点之间切换  需要优化
+                    if(mLastLocaion == null){
+                        locateOnMap(fake_Location,mBaiduMap);
+                    }else if (mLastLocaion.latitude == fake_Location.latitude){
+                        locateOnMap(Location1,mBaiduMap);
+                    }else if (mLastLocaion.latitude == Location1.latitude){
+                        locateOnMap(Location2,mBaiduMap);
+                    }else if(mLastLocaion.latitude == Location2.latitude){
+                        locateOnMap(Location3,mBaiduMap);
+                    }else{
+                        locateOnMap(fake_Location,mBaiduMap);
+                    }
+                }
+
 
 
             }
@@ -506,4 +527,7 @@ public class MainActivity extends AppCompatActivity {
         map.animateMapStatus(mapStatusUpdate);
         mLastLocaion = location_point;
     }
+
+
+
 }
