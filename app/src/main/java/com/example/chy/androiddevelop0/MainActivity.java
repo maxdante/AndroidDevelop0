@@ -421,7 +421,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //set pressed button background image
-                if (NetWorkConnection.isConnect(mContext)==false)
+                if (NetWorkConnection.isNetworkConnected(mContext)==false)
                 {
                     new AlertDialog.Builder(mContext)
                             .setTitle("网络错误")

@@ -10,19 +10,6 @@ import android.util.Log;
  */
 public class NetWorkConnection {
 
-    public static boolean isConnect(Context context) {
-        // 获取手机所有连接管理对象（包括对wi-fi,net等连接的管理）
-        try {
-            if (isMobileConnected(context) || isWifiConnected(context) || isNetworkConnected(context)){
-                return true;
-            }
-
-        } catch (Exception e) {
-// TODO: handle exception
-            Log.v("error", e.toString());
-        }
-        return false;
-    }
     //判断MOBILE网络是否可用
     public static boolean isMobileConnected(Context context) {
         if (context != null) {
